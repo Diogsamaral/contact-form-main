@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Contact form</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+    @font-face {
+      font-family: 'Karla-Italic'; /* Nome composto */
+      src: url('fonts\Karla-Italic-VariableFont_wght.ttf') format('truetype'); /* Caminho do arquivo */
+    }
+
+    body{
+      background-color: rgb(204, 255, 239);
+      margin: 0;
+      text-align: initial;
+      padding: 10em 40em;
+      min-height: 100vh;
+      font-family: 'Karla-Italic', sans-serif;
+    }
+
+    form {
+      background-color: white;
+      padding: 30px 5px;
+      border-radius: 20px;
+      box-shadow: 5px 5px 15px;
+      justify-content: initial;
+    }
+
+    .nome-completo {
+      display: flex;
+      justify-content: initial;
+    }
+
+    .nome-completo .nome, .sobrenome {
+      width: 49%;
+    }
+
+
+    .form-group label {
+      font-size: 18px;  /* Espaçamento entre o label e o input correspondente */
+      font-family: 'Karla-Italic', sans-serif;
+    }
+
+    .form-group .inp {
+      height: 60px;
+      padding: 8px; /* Espaçamento interno */
+      box-sizing: border-box; /* Garante que o padding não ultrapasse o tamanho do input */
+      border: 1px solid #ccc; /* Borda cinza */
+      border-radius: 15px; /* Bordas arredondadas */
+      width: 94%;
+    }
+
+    .radio {
+      display: flex;
+      gap: 2em;
+      justify-content: initial;
+    }
+
+    .radio1, .radio2 {
+      width: 46%;
+      height: 70px;
+      align-items: center;
+      display: flex;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      border-radius: 15px;      
+    }
+
+    #inquerito, #suporte {
+      height: 30px;
+      width: 4em;
+    }
+
+    .check {
+      align-content: center;
+    }
+
+    .check input {
+      width: 20px;
+      height: 20px;
+      margin-right: 20px;
+    }
+
+
+    .forme {
+      padding: 20px;
+    }
+
+    #mensagem {
+      border-radius: 15px;
+    }
+
+    em {
+      color:  rgb(18, 145, 90);
+    }
+
+    button {
+      width: 100%;
+      height: 60px;
+      background-color: rgb(18, 145, 90);
+      border-radius: 10px;
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    
+
+
+  </style>
+</head>
+<body>
+
+  <form id="contactForm" action="" method="post" class="form-group">
+    <div class="forme">
+      <h2 style="padding-bottom: 20px;">Contate-nos</h2>
+      <!--Nome completo-->
+      <div class="nome-completo">
+        <div class="nome">
+          <label class="detalhes" for="first-name">Primeiro Nome <em>*</em></label><br>
+          <input class="inp" type="text" id="nome" name="first-name" required />
+          <div class="error" id="nomeError"></div>
+        </div>
+
+        <div class="sobrenome">
+          <label class="detalhes" for="last-name">Segundo Nome <em>*</em></label><br>
+          <input class="inp" type="text" id="sobrenome" name="last-name" required />  
+          <div class="error" id="sobrenomeError"></div>
+        </div>
+      </div>
+    </div>
+    <!--Email-->
+    <div class="forme">
+      <div>
+        <label class="detalhes" for="email">E-mail <em>*</em></label><br>
+        <input class="inp" id="email" type="email" id="email" name="email" required />
+        <div class="error" id="emailError"></div>
+      </div>
+  
+    </div>
+
+    <div class="forme">
+      <!-- Botões de rádio -->
+      <label>Tipo de Consulta <em>*</em></label>
+      <div class="radio">
+        <div class="radio1">
+          <input type="radio" id="inquerito" name="tipoConsulta" value="inquerito" required />
+          <label for="option1">Inquérito geral</label>
+        </div>
+        <div class="radio2">
+          <input type="radio" id="suporte" name="tipoConsulta" value="suporte" required />
+          <label for="option2">Solicitação de suporte</label>
+        </div>
+        <div class="error" id="tipoConsultaError"></div>
+      </div>
+    </div>
+
+    <div class="forme">
+      <div>
+        <label class="detalhes" for="comments">Mensagem <em>*</em></label><br>
+        <textarea id="mensagem" name="comments" rows="10" cols="140" required></textarea>
+        <div class="error" id="mensagemError"></div>
+      </div>
+    </div>
+
+    <div class="forme">
+      <div class="check">
+        <input type="checkbox" id="aceitoTermo" name="terms" required />
+        <label for="terms">Autorizo ser contactado pela equipe *</label>
+        <div class="error" id="aceitoTermoError"></div>
+      </div>
+      <br><br><br>
+      <button type="submit">Enviar</button>
+    </div>
+
+  </form>
+
+  <br><br><br>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        document.querySelectorAll(".error").forEach(el => el.textContent = "");
+
+        let isValid = true;
+
+        const nome = document.getElementById("nome").value.trim();
+        const sobrenome = document.getElementById("sobrenome").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const tipoConsulta = document.querySelector('input[name="tipoConsulta"]:checked');
+        const mensagem = document.getElementById("mensagem").value.trim();
+        const aceitoTermo = document.getElementById("aceitoTermo").checked;
+
+        if (!nome) {
+            document.getElementById("nomeError").textContent = "Por favor, preencha seu nome.";
+            isValid = false;
+        }
+        if (!sobrenome) {
+            document.getElementById("sobrenomeError").textContent = "Por favor, preencha seu sobrenome.";
+            isValid = false;
+        }
+        if (!email || !/\S+@\S+\.\S+/.test(email)) {
+            document.getElementById("emailError").textContent = "Por favor, forneça um email válido.";
+            isValid = false;
+        }
+        if (!tipoConsulta) {
+            document.getElementById("tipoConsultaError").textContent = "Por favor, selecione um tipo de consulta.";
+            isValid = false;
+        }
+        if (!mensagem) {
+            document.getElementById("mensagemError").textContent = "Por favor, escreva sua mensagem.";
+            isValid = false;
+        }
+        if (!aceitoTermo) {
+            document.getElementById("aceitoTermoError").textContent = "Você deve aceitar os termos.";
+            isValid = false;
+        }
+
+        if (isValid) {
+            alert("Formulário enviado com sucesso!");
+            console.log({
+                nome,
+                sobrenome,
+                email,
+                tipoConsulta: tipoConsulta.value,
+                mensagem,
+                aceitoTermo
+            });
+            this.reset();
+        }
+    });
+  </script>
+
+</body>
+</html>
